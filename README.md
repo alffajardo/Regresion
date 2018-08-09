@@ -31,7 +31,7 @@ basic_eda <- function(My_data) {
   plot_num(My_data)
   describe(My_data)
 }
-
+basic_eda(wcgs)
 #Explorar los datos con gráficas de ggplot
 
 ggplot(data=wcgs) + geom_histogram(mapping = aes(x=sbp),binwidth = 9)
