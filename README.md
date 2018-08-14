@@ -65,5 +65,7 @@ ggplot(data=wcgs,aes(x=behpat,y=sbp))+
 geom_boxplot()+
 geom_jitter(height = 0.05,width = 0.05)
 
+
+
 ```
 
