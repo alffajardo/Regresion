@@ -1,0 +1,79 @@
+---
+title: "ggplot visualization"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+
+
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+ primero Cargamos tydiverse
+```{r}
+library(tidyverse)
+```
+## Crear una grafica del paquete mpg
+```{r}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy))
+```
+probando hacer otra gráfica
+¿ Será util esta gráfica?
+```{r}
+ggplot(data = mpg)+
+geom_point(mapping = aes(x= cyl,y=hwy))
+```
+¿Qué pasa si hacemos una gráfica de class vs drv? ¿ Resulta útil esta gráfica?
+```{r}
+ggplot(data=mpg)+
+  geom_point(mapping = aes(x=drv,y=class))
+```
+**Respuesta: La gráfica no resulta de mucha utilidad puesto que estamos graficando una variable categórica en el eje y**
+
+pueden representarse a través de propieades como el color o el tamaño de los puntos la asociación con diferentes variables. Vamoslo a continuación.
+```{r}
+ggplot(data = mpg)+
+geom_point(mapping = aes(x=displ,y=hwy,color=class,size=1.5))
+```
+ahora veamos que pasa si el paramétro que describe el tipo de auto es el tamaño de los puntos en ves del color
+```{r}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy, size = class))
+```
+
+tambien puede mapearse la clase modificando la transparencia de los puntos. vamoslo con el siguiente código
+```{r}
+## left
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy, alpha = class))
+# Right
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy, shape = class))
+```
+tambien puede modificarse simplemente el color de los puntos, sin que se mapee ninguna variable en particular:
+```{r}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy), color = "blue")
+```
+En este caso el color debe estar afuera de los parámatros del mapping. De lo contrario R hace algo un poco extraño:
+```{r}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy ,color = "blue"))
+```
+## Haciendo facetas
+con ggplot es posible generar multiples grafícas para describir la interacción de una variable con las demas. para esto se usan el argumento facet_wrap(~variable,...) y facet_grid() para describir las relaciones entre más de una variable.
+
+```{r}
+ggplot(data = mpg)+
+  geom_point(mapping = aes(x = displ, y =hwy))+
+facet_wrap(~class, nrow=2)
+```
+```{r}
+ggplot(data = mpg)+
+  geom_point(mapping = aes(x=displ,y=hwy))+
+  facet_grid(drv ~ cyl)
+```
+
