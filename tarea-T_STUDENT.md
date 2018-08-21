@@ -59,3 +59,6 @@ comparison <- t.test(score~treatment,data = datos2,paired=T)
 comparison
 
 ```
+
+```
+
