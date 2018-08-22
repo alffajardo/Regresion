@@ -1,10 +1,11 @@
 ---
 title: "tarea T-student"
 output:
+  word_document: default
   html_notebook: default
+  pdf_document: default
   html_document:
     df_print: paged
-  pdf_document: default
 ---
  The purpose of an investigation by Morley et al. (A-17) was to evaluate the analgesic effectiveness
 of a daily dose of oral methadone in patients with chronic neuropathic pain syndromes. The
@@ -17,23 +18,26 @@ significance, to indicate that in general the maximum pain intensity is lower on
 methadone is taken?
 
 
-![](imagen1.png)
 
 
 
 
 
-## importar los datos y acomodarlos
+## importar los datos
 
 ```{r}
 library(tidyverse)
 datos <- read.csv("EXR_C07_S04_03.csv")
-View(datos)
+datos
 treatment  <- factor( c(rep(1,11),rep(2,11)),
                       labels = c("Placebo","Methadone"))
+
+```
+## Acomodar los datos
+```{r}
 score <- c(datos$Plac,datos$Meth)
 datos2 <- data.frame(treatment,score)
-View(datos2)
+datos2
 ```
 
 ## Test de varianza
@@ -59,3 +63,6 @@ comparison <- t.test(score~treatment,data = datos2,paired=T)
 comparison
 
 ```
+**Interpretación**: 
+- No existen diferencias significativas en la prueba de varianza por lo que es posible emplear una prueba paramétrica
+- al Realizar una prueba T-student para muestras relacionadas, los resultados indican que las medias son diferentes debido al tratamiendo con placebo o metadona

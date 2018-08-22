@@ -210,3 +210,8 @@ uhat_SBP <- resid(SBP_race.aov)
 shapiro.test(uhat_SBP)
  ```
 
+tarea anova: sección 8.2.4
+
+
+
+tarea raul: 8.2.6, 8.13.
