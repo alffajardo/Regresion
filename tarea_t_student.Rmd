@@ -64,5 +64,5 @@ comparison
 
 ```
 **Interpretación**: 
-- No existen diferencias significativas en la prueba de varianza por lo que es posible emplear una prueba paramétrica
+-No existen diferencias significativas en la prueba de varianza por lo que es posible emplear una prueba paramétrica.
 - al Realizar una prueba T-student para muestras relacionadas, los resultados indican que las medias son diferentes debido al tratamiendo con placebo o metadona
