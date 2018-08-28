@@ -1,0 +1,67 @@
+---
+title: "Tarea Anova"
+output:
+  pdf_document: default
+  html_notebook: default
+---
+Alfonso Fajardo 
+### ejercicio 8.2.4
+
+Gold et al. (A-5) investigated the effectiveness on smoking cessation of a nicotine patch, bupropion
+SR, or both, when co-administered with cognitive-behavioral therapy. Consecutive consenting
+patients ð Þ n ¼ 164 assigned themselves to one of three treatments according to personal preference:
+nicotine patch NTP ð Þ ; n ¼ 13 , bupropion SR B ð Þ ; n ¼ 92 , and bupropion SR plus nicotine patch
+ð Þ BNTP; n ¼ 59 . At their first smoking cessation class, patients estimated the number of packs of
+cigarettes they currently smoked per day and the numbers of years they smoked. The "pack years" is
+the average number of packs the subject smoked per day multiplied by the number of years the subject
+had smoked. The results are shown in the following table.
+
+## importar los datos y asignar la variable  en factor
+```{r}
+
+smoke_data <- read.csv("ch08_all/EXR_C08_S02_04.csv")
+smoke_data$GROUP <- as.factor(smoke_data$GROUP)
+levels(smoke_data$GROUP) <- c("patch","Bup","patch+Bup")
+```
+## boxplot
+```{r}
+library("ggplot2")
+
+ggplot(data = smoke_data, mapping = aes(x= GROUP, YEARS,col = GROUP))+
+  geom_boxplot()+
+  geom_jitter(height = 0.01,width = 0.1 )
+
+
+```
+```{r}
+library(MASS)
+truehist(smoke_data$YEARS, nbins=9, col = "salmon")
+lines(density(smoke_data$YEARS),lty=2,col="blue",lwd=3)
+```
+
+## Test de normailidad
+
+
+```{r}
+shapiro.test(smoke_data$YEARS)
+```
+
+## test de varianzas
+```{r}
+library(car)
+leveneTest(YEARS~GROUP,data = smoke_data)
+```
+## Anova
+```{r}
+lm_smoke<- lm(YEARS~GROUP, data = smoke_data)
+aov_smoke <- aov(lm_smoke)
+anova(aov_smoke)
+                     
+```
+# Poshoc
+```{r}
+ TukeyHSD(aov_smoke)
+plot(TukeyHSD(aov_smoke))
+
+```
+
