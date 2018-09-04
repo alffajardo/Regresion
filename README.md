@@ -210,8 +210,7 @@ uhat_SBP <- resid(SBP_race.aov)
 shapiro.test(uhat_SBP)
  ```
 
-tarea anova: sección 8.2.4
+## Regresión lineal simple y correlación
 
+`requiere(gmodels)`
 
-
-tarea raul: 8.2.6, 8.13.
