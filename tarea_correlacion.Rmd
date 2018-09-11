@@ -1,0 +1,57 @@
+---
+title: "ejercicio 9.7.2"
+output:
+  pdf_document: default
+  html_notebook: default
+---
+
+## Leer los datos
+
+```{r}
+ex_9.7.2 <- read.csv("EXR_C09_S07_02.csv")
+library(car)
+```
+
+```{r}
+plot(ex_9.7.2$HOSP, ex_9.7.2$COAGU, pch=16, cex=1.5)
+abline(lm(formula = ex_9.7.2$COAGU~ ex_9.7.2$HOSP),col="darkred",lwd=2)
+```
+
+QQ-plots
+```{r}
+par(mfrow=c(1,2))
+qqPlot(ex_9.7.2$COAGU,pch=16)
+qqPlot(ex_9.7.2$HOSP,pch=16)
+
+```
+
+```{r}
+cor.test(ex_9.7.2$COAGU,ex_9.7.2$HOSP)
+```
+```{r}
+lineal_model <- lm(COAGU~HOSP, data = ex_9.7.2)
+lineal_model
+
+```
+
+```{r}
+summary(lineal_model)
+```
+
+plot lineal model
+```{r}
+par(mfrow=c(2,2))
+plot(lineal_model)
+```
+
+Test
+
+```{r}
+ex_anova <- aov(lineal_model)
+summary(ex_anova)
+```
+
+```{r}
+shapiro.test(resid(ex_anova))
+```
+
