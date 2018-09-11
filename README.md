@@ -218,7 +218,6 @@ shapiro.test(uhat_SBP)
 # Examples of the Chapter 3 
 #
 library(tidyverse)
-setwd("~/Dropbox/Fdo/ClaseStats/RegresionClass/RegresionR_code")
 #
 
 hers <- read_csv("DataRegressBook/Chap3/hersdata.csv")
@@ -238,7 +237,7 @@ shapiro.test(uhat_SBP)
 #
 
 # Example of simplelinear model
-Exr33 <- read_csv(file="DataOther/EXR_C09_S03_03.csv")
+Exr33 <- read_csv(file="EXR_C09_S03_03.csv")
 #
 plot(Exr33$QTC ~ Exr33$DOSE, pch=20)
 LinExr33 = lm(QTC ~ DOSE, data=Exr33)
@@ -250,7 +249,7 @@ abline(LinExr33, col=2)
 # Measures of INR (Y) from 90 subjects taking warfarin the 
 # independent variable was the hospital essays (X)
 library(tidyverse)
-Exr3.4 <- read_csv(file="DataOther/EXR_C09_S03_04.csv")
+Exr3.4 <- read_csv(file="EXR_C09_S03_04.csv")
 plot(Y ~ X, data=Exr3.4, pch=20)
 LinExr3.4 <- lm(Y ~ X, data=Exr3.4)
 abline(LinExr3.4, col=2)
@@ -272,7 +271,7 @@ ggplot(data = Exr3.4, mapping = aes(x = X, y = Y)) + geom_point(na.rm = TRUE) +
 # gold standar of GFR. Examied inverse Cystatin C as 
 # insulin GFR, use the DTPA GFR as the predictor
 # of the inverse Cystatin C
-Exr3.7 <- read_csv(file="DataOther/EXR_C09_S03_07.csv")
+Exr3.7 <- read_csv(file="EXR_C09_S03_07.csv")
 plot(INVCYS ~ DTPA, data=Exr3.7, pch=20)
 LinExr3.7 = lm(INVCYS ~ DTPA, data=Exr3.7)
 summary(LinExr3.7)
