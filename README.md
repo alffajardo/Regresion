@@ -299,3 +299,8 @@ chisq.test(tab_wcgs)
 # chisq.test(tab_wcgs, simulate.p.value = TRUE)
 ```
 
+## Análisis de sobrevivencia
+
+se realiza un análisis de tiempo y de eventos de manera que se hace en sustratos.
+
+estimador de kaplan
