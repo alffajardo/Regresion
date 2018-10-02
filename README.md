@@ -304,3 +304,19 @@ chisq.test(tab_wcgs)
 se realiza un análisis de tiempo y de eventos de manera que se hace en sustratos.
 
 estimador de kaplan
+
+escribir aquí código para analisis de sobrevivencia
+
+```
+
+```
+
+
+
+## Regresión multiple
+
+```
+
+```
+
+tarea: capitulo 8 everitte
