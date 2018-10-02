@@ -1,0 +1,33 @@
+---
+title:"regresion Daniel ejercicio "
+output: html_notebook
+---
+First i will load some packages
+```{r}
+library(psych)
+library(lsr)
+library(car)
+
+
+```
+
+
+```{r}
+ex9.3.1 <- read.csv("EXA_C09_S03_01.csv")
+attach(ex9.3.1)
+summary(ex9.3.1)
+```
+generate scatter diagram
+```{r}
+
+plot(X,Y,xlab='Waist circumference (cm), X',ylab='Deep abdominal AT area (cm2), Y',pch=16,cex=1.2)
+abline(b0,b1,lwd=5)
+```
+```{r}
+ex9.3.3 <- read.csv("EXR_C09_S03_03.csv")
+
+plot(ex9.3.3$DOSE,ex9.3.3$QTC)
+abline(lm(QTC ~ DOSE, data=ex9.3.3),col="red")
+
+```
+

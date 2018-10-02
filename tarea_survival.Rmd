@@ -1,0 +1,45 @@
+---
+title: "Survival analysis"
+output:
+  pdf_document: default
+  html_notebook: default
+---
+
+
+## Import the data
+```{r}
+library(tidyverse)
+library(survival)
+library(survminer)
+library(readxl)
+library(coin)
+
+cancer <- read_excel("cancer_survival.xlsx")
+cancer$event <- as.logical(cancer$event)
+cancer$metastasised <- as.factor(cancer$metastasised)
+head(cancer,3)
+tail(cancer,3)
+
+```
+## Plot Kaplan-Meir function
+```{r}
+sfit <- survfit(Surv(Folowing_Time,event)~metastasised,data=cancer)
+ggsurvplot(sfit,
+           conf.int=TRUE, 
+           pval=TRUE,
+           legend.labs=c("No", "Yes"), 
+           legend.title="Metastasised",  
+           palette=c("cornflowerblue", "indianred3"), 
+           title="Kaplan-Meier Curve for breast cancer survival",
+           xlab = "Time (months)",
+           risk.table = T,
+           risk.table.height = 0.25, # Useful to change when you have multiple groups
+  surv.median.line = "hv",  # add the median survival pointer.
+            ggtheme = theme_bw())
+
+```
+##logrank Test
+```{r}
+logrank_test(Surv(Folowing_Time, event) ~ metastasised, data = cancer, distribution = "exact")
+```
+
